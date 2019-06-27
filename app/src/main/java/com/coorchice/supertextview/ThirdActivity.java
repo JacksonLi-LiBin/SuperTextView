@@ -18,12 +18,12 @@ package com.coorchice.supertextview;
 
 import com.coorchice.library.SuperTextView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class ThirdActivity extends AppCompatActivity {
+public class ThirdActivity extends Activity {
 
   private SuperTextView stv_1;
   private SuperTextView stv_2;
@@ -37,14 +37,20 @@ public class ThirdActivity extends AppCompatActivity {
 
 
     String url_imag =
-      "http://ogemdlrap.bkt.clouddn.com/revanger_4.jpeg";
+      "https://raw.githubusercontent.com/chenBingX/img/master/其它/u=2051975322,3785503293&fm=26&gp=0.jpg";
     String url_avatar =
-        "http://ogemdlrap.bkt.clouddn.com/timg-2.jpeg";
+        "https://raw.githubusercontent.com/chenBingX/img/master/其它/download.jpg";
 
 
     stv_1.setUrlImage(url_imag, false);
     stv_2.setUrlImage(url_avatar);
 
+    stv_1.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startActivity(new Intent(ThirdActivity.this, TestActivity.class));
+      }
+    });
     stv_2.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

@@ -21,56 +21,68 @@ import java.util.List;
 
 import com.coorchice.library.SuperTextView;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends Activity {
 
-  private RecyclerView rv;
+    private RecyclerView rv;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_list);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list);
 
-    rv = (RecyclerView) findViewById(R.id.rv);
+        rv = (RecyclerView) findViewById(R.id.rv);
 
-    final List<String> datas = new ArrayList<>();
-    for (int i = 0; i < 20; i++) {
-      datas.add("http://ogemdlrap.bkt.clouddn.com/revanger_4.jpeg");
-      datas.add("http://ogemdlrap.bkt.clouddn.com/timg-2.jpeg");
-      datas.add("http://ogemdlrap.bkt.clouddn.com/rebanger_3.jpg");
-      datas.add("http://ogemdlrap.bkt.clouddn.com/revanger_2.jpeg");
-      datas.add("http://ogemdlrap.bkt.clouddn.com/revanger_1.jpg");
+        final List<String> datas = new ArrayList<>();
+        datas.add("https://raw.githubusercontent.com/chenBingX/img/master/stv/wow_avatar.jpg");
+        for (int i = 0; i < 20; i++) {
+            datas.add("https://raw.githubusercontent.com/chenBingX/img/master/其它/u=343452579,826911251&fm=26&gp=0.jpg");
+            datas.add("https://raw.githubusercontent.com/chenBingX/img/master/其它/u=2111584605,3825924903&fm=26&gp=0.jpg");
+            datas.add("https://raw.githubusercontent.com/chenBingX/img/master/其它/u=2294437324,1126471106&fm=26&gp=0.jpg");
+            datas.add("https://raw.githubusercontent.com/chenBingX/img/master/其它/download.jpg");
+            datas.add("https://raw.githubusercontent.com/chenBingX/img/master/其它/u=3680923293,1495896930&fm=26&gp=0.jpg");
+        }
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setItemAnimator(new DefaultItemAnimator());
+        rv.setAdapter(new RecyclerView.Adapter() {
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                return new RecyclerView.ViewHolder(
+                        LayoutInflater.from(ListActivity.this).inflate(
+                                viewType == 0 ? R.layout.item_layout_2 : R.layout.item_layout
+                                , parent, false)) {
+
+                };
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+                if (position == 0) {
+                    ((SuperTextView) (holder.itemView.findViewById(R.id.stv))).setUrlImage(datas.get(position));
+                } else {
+                    SuperTextView stv = (SuperTextView) (holder.itemView.findViewById(R.id.stv_1));
+                    stv.setDrawable(ListActivity.this.getResources().getDrawable(R.drawable.loading_1));
+                    stv.setUrlImage(datas.get(position), false);
+                }
+            }
+
+            @Override
+            public int getItemCount() {
+                return datas.size();
+            }
+
+            @Override
+            public int getItemViewType(int position) {
+                return position == 0 ? 0 : 1;
+            }
+        });
     }
-    rv.setLayoutManager(new LinearLayoutManager(this));
-    rv.setItemAnimator(new DefaultItemAnimator());
-    rv.setAdapter(new RecyclerView.Adapter() {
-      @Override
-      public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RecyclerView.ViewHolder(
-            LayoutInflater.from(ListActivity.this).inflate(R.layout.item_layout, parent, false)) {
-
-        };
-      }
-
-      @Override
-      public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        SuperTextView stv = (SuperTextView) (holder.itemView.findViewById(R.id.stv_1));
-        stv.setDrawable(ListActivity.this.getResources().getDrawable(R.drawable.loading_1));
-        stv.setUrlImage(datas.get(position), false);
-      }
-
-      @Override
-      public int getItemCount() {
-        return datas.size();
-      }
-    });
-  }
 }

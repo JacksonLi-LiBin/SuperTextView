@@ -1,76 +1,289 @@
-# 你好, SuperTextView
-
-  [![](https://img.shields.io/badge/SuperTextView-v3.0-brightgreen.svg)](https://github.com/chenBingX/SuperTextView)    [![](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](https://github.com/chenBingX/SuperTextView#license)    [![Insight.io](https://www.insight.io/repoBadge/github.com/tesseract-ocr/tesseract)](https://insight.io/github.com/chenBingX/SuperTextView)
+# Hello, Developer！Welcome to use SuperTextView
 
 
-#### [【SuperTextView english document】](https://github.com/chenBingX/SuperTextView/blob/master/README_EN.md)
-
-#### [点击此处，查看《SuperTextView 开发参考文档》](https://chenbingx.github.io/SuperTextView/develop_guide.html)
-
-#### [点击此处，查看详细的《SuperTextView API文档》](https://chenbingx.github.io/SuperTextView/SuperTextView-doc/index.html)
-
-<img src="http://ogemdlrap.bkt.clouddn.com/SuperTextView_yuan%202.png" width=130 height=130 align=right alt="SuperTextView">
-
-从 **SuperTextView** 诞生之初，便始终坚持一个愿景，即帮助 Android 开发者快速愉悦的去构建一个应用。
-
-**SuperTextView** 是一个高效的、全能的 **Android** 控件。通过 **SuperTextView** ，你可以快速实现圆角背景，设置渐变色背景，给控件和文字描边，为控件增加状态图，添加按压时文字或背景变色效果，通过 **Adjuster** 模块快速插入操作到控件绘制过程中，展示图片，甚至可以直接从网络上下载图片展示...基本上涵盖了 **Android** 日常开发中会用到的绝大部分效果。而实现这一切的代价，仅仅是给 **SuperTextView** 设置一个属性。**SuperTextView** 可以帮助开发者高效、便捷、优雅的完成需求开发。
+[![](https://jitpack.io/v/chenbingx/supertextview.svg)](https://jitpack.io/#chenbingx/supertextview) [![](https://img.shields.io/badge/SuperTextView-v3.1.4-orange.svg)](https://github.com/chenBingX/SuperTextView) [![](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/chenBingX/SuperTextView) [![](https://img.shields.io/badge/API-14+-yellowgreen.svg)](https://android-arsenal.com/api?level=14#l14) [![](https://img.shields.io/badge/License-Apache--2.0-blueviolet.svg)](https://github.com/chenBingX/SuperTextView#license) [![](https://img.shields.io/badge/Author-CoorChice-blue.svg)](https://weibo.com/5406092281/profile?topnav=1&wvr=6) [![](https://img.shields.io/badge/QQ--Group-775951525-ff5722.svg)](https://jq.qq.com/?_wv=1027&k=5DIRlPm)
 
 
-![](https://gw.alicdn.com/tfs/TB1JEPSrH9YBuNjy0FgXXcxcXXa-1195-622.gif)
+# **English** | [**中文**](https://github.com/chenBingX/SuperTextView/blob/master/README_CN.md)
+
+<img src="https://raw.githubusercontent.com/chenBingX/img/master/stv/SuperTextViewyuan.png" width=150 height=150 align=right alt="SuperTextView">
+
+Hi，Developer，Welcome to use **SuperTextView** ！Thank you and tens of thousands of Android developers for  your trust in me 😘
+
+**SuperTextView** is a component that focuses on serving Android developers, designed to help you build amazing **Android** applications.
+
+In the past one and a half years, **SuperTextView** has gone through many iterations and hundreds of times of **commit**, which has been widely used in various types of commercial apps, and has withstood the test of tens of millions of users. I believe that **SuperTextView** can bring you to improve the development experience, and help you build or improve a more beautiful application.
+
+**SuperTextView** is improving the development experience for **Android** developers in a more concise way. With everyone's support, in the future, **SuperTextView** will continue to serve developers and bring more surprises to developers.
+
+# Feature
+- set rounded corners for **View**
+- supports separate control of each rounded corner
+- add border for **View**
+- add a stroke or hollow effect to the text
+- support up to 2 **Drawable** to display
+- accurately control the size and position of **Drawable**
+- support gradient background
+- touch discoloration
+- display pictures, including the net pictures
+- set rounded corners for pictures
+- add borders to pictures
+-  **Adjuster** module can insert operation
+- change the color of **Drawable**
+- change the rotation of **Drawable**
+- support text gradient effect
+- ...
+
+# Demo
 
 
-# 近期更新
+[ 📲 click here (or scan the qr code below) to download the **Demo**](https://raw.githubusercontent.com/chenBingX/img/master/%E5%85%B6%E5%AE%83%E6%96%87%E4%BB%B6/STVDemo.apk)
 
-## v3.0 - 你期待已久的SuperTextView
-经过一年多的不断的聆听、思考、探索、验证， **SuperTextView** 完成了多次迭代，改善了一些问题，新增了一些功能，不断的完善，以带给开发者更好的开发体验。
+<img src="https://raw.githubusercontent.com/chenBingX/img/master/stv/stv_Demo_url.png" width=150 height=150 align=center alt="SuperTextView">
 
-如今， **SuperTextView** 已经具备了诸如圆角、边框、描边、按压变色、多状态图、圆角图、万能的 **Adjuster** 、加载网络图片等一系列的常用功能。得益于此，开发者能够轻松实现各种原本十分麻烦的效果，节省大量的开发时间，有效减少页面的复杂度，降低项目维护成本。
+|One|Two|Three|
+|:---:|:---:|:---:|
+|![](https://raw.githubusercontent.com/chenBingX/img/master/stv/stv演示1.gif)|![](https://raw.githubusercontent.com/chenBingX/img/master/stv/stv演示2.gif)|![](https://raw.githubusercontent.com/chenBingX/img/master/stv/stv演示3.gif)|
 
-写代码，本应如此愉悦！
 
-### 1. 链接云端的SuperTextView
+# Portal Area
 
-早在几个月前，就开始有很多开发者向 **CoorChice** 建议，是否能够让 **SuperTextView** 具备加载网络图片的功能。其实这也是 **CoorChice** 很久之前就有考虑过的，但在 **SuperTextView** 的早期，完善其核心功能仍然是首要目标，所以一直没涉猎到图片相关的功能。
 
-直到上一个大版本，**SuperTextView v2.0**，**CoorChie** 才尝试添加了图片展示的功能。这使得**SuperTextView** 可使用的范围得到了扩大，同时针对图片也推出了给图片增加描边、设置圆角、设置状态图等功能。相关使用文档可到以下链接查阅：
+- [【Portal】：《SuperTextView Development Reference Document》- You can learn how to use SuperTextView to build your application more efficiently](https://github.com/chenBingX/SuperTextView/wiki)
 
-[【你好， SuperTextView】 - https://www.jianshu.com/p/1b91e11e441d](https://www.jianshu.com/p/1b91e11e441d)
+- [【Portal】：《SuperTextView API Document》— You can view all of the SuperTextView's available apis and properties](https://chenbingx.github.io/SuperTextView/SuperTextView-doc/index.html)
 
-这一次尝试，获得了开发者们不错的反响，大家对于使用 **SuperTextView** 去展示处理图片是有所期待的。上一个版本发布后，开发者们对于一个能展示网络图片的 **SuperTextView** 似乎更加的感兴趣了。
 
-那么，现在，你所期待已久的 **SuperTextView** 在此！
+# Usage
 
-![](http://ogemdlrap.bkt.clouddn.com/%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD%E6%BC%94%E7%A4%BA2.gif)
 
-#### 1.1 加载一张网络图片
-显示一张网络图片，在 **SuperTextView** 中只需要如下代码：
+Add it in you build.gradle:
+
+```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    compile 'com.github.chenBingX:SuperTextView:VERSION_CODE'
+}
+```
+
+[The version code of the latest release can be found here.](https://github.com/chenBingX/SuperTextView/releases)
+
+
+# Update Log
+
+
+![](https://raw.githubusercontent.com/chenBingX/img/master/stv/stv全集3.1.3.gif)
+
+## v3.1.1 - Sincerity works，SuperTextView
+
+**SuperTextView** was built to help Android developers develop Android applications more efficiently, conveniently, and elegantly.
+
+Now the bona fides have escalated again. The new **SuperTextView** will open up more possibilities to Android developers, and, as always, **SuperTextView** will bring more efficient features.
+
+### 1 Amazing coloring
+
+![image](https://raw.githubusercontent.com/chenBingX/img/master/stv/着色.png)
+
+This update to **SuperTextView** adds a magical and powerful coloring capability to **StateDrawable**. Developers can easily change the color of an icon without having to add a different color icon to the project. This technology will give your Android applications a chance to slim down.
+
+```
+# modify the drawable color
+app:stv_state_drawable_tint="@color/gray"
+
+# modify the drawable2 color
+app:stv_state_drawable2_tint="@color/red"
+```
+
+With such a simple line of code, you can instantly give an picture the power to change. Any color you want is up to you, of course. All this happened without the need to introduce another picture.
+
+In the Java code, there is a set / get function corresponding to it, so that developers can cast magic at any time, changing the color of a picture.
+
+### 2 Seventy-two Metamorphoses;
+
+
+StateDrawable's enhancements go beyond color transformations. SuperTextView has been given the ability to change StateDrawable's shape. With the same picture, developers can combine an infinite number of possibilities.
+
+![image](https://raw.githubusercontent.com/chenBingX/img/master/stv/旋转.png)
+
+With a few lines of code, you can transform any picture as you wish.
+
+```
+# Modify the drawable's rotation
+app:stv_state_drawable_rotate="90"
+
+# Modify the drawable's rotation
+app:stv_state_drawable2_rotate="90"
+```
+
+No need for complicated code, **SuperTextView** is as simple and elegant as ever.
+
+Similarly, in Java code, the corresponding set/get function is also provided.
+
+This ability can effectively help developers compress the volume of Android applications to the extreme.
+
+
+### 3 Wonderful is far more than this
+
+![image](https://raw.githubusercontent.com/chenBingX/img/master/stv/文字渐变色.png)
+
+This is the gradient text!
+
+What **SuperTextView** offers is probably the simplest and elegant solution for implementing gradient text so far. With a simple configuration, you can achieve cool gradient text effects.
+
+```
+# Whether to enable gradient text
+app:stv_textShaderEnable="true"
+
+# Set the starting color of the text
+app:stv_textShaderStartColor="@color/red"
+
+# Set the ending color of the text
+app:stv_textShaderEndColor="@color/yellow"
+
+# Set the gradient mode of the text
+# leftToRight：left -> right
+# rightToLeft：right -> left
+# topToBottom：top -> bottom
+# bottomToTop：bottom -> top
+app:stv_textShaderMode="leftToRight"
+```
+
+These properties also provide the set/get interface in Java, making it easy for developers to modify them at any time.
+
+
+### 4 New apis have been opened
+
+#### 4.1 Adjuster adds onAttach, onDetach
+
+Adjuster added two new functions:
+
+-  `onAttach()` : when Adjuster is set to a **SuperTextView** will be invoked.
+-  `onDetach() ` : when Adjuster is removed from a **SuperTextView** will be invoked.
+
+By rewriting these two functions in Adjuster, the developer can perform state registration, initialization, unregistration, resource release and other operations at the right time.
+
+```
+public class MyAdjuster extends SuperTextView.Adjuster{
+
+    @Override
+    protected void adjust(SuperTextView superTextView, Canvas canvas) {
+
+    }
+
+    @Override
+    public void onAttach(SuperTextView stv) {
+      // will be called when the modifier is added to a SuperTextView
+    }
+
+    @Override
+    public void onDetach(SuperTextView stv) {
+      // will be called when the Adjuster is removed from SuperTextView
+    }
+}
+```
+
+#### 4.2 Provide getAdjusterList() function
+
+This function allows the developer to get all the **Adjusters** in a **SuperTextView**. If there is no **Adjuster** in the **SuperTextView**, it will return null.
+
+### 5 ⚠️You must take these changes seriously
+
+#### 5.1 Attribute with the stv_ prefix
+
+All properties of **SuperTextView** are now prefixed with `stv_`.
+
+This avoids conflicts with the property names that **SuperTextView** may generate when other third-party libraries are introduced by the developer.
+
+If the developer is currently using a previous version of **SuperTextView**, then after upgrading to the new version, you need to prefix the attributes in all xml with the `stv_` prefix.
+
+```
+app:corner="10dp"
+```
+
+corner is the name of the attribute in the old version. After upgrading to the new version, you need to add the `stv_` prefix to the front and become `stv_corner`.
+
+![image](https://raw.githubusercontent.com/chenBingX/img/master/stv/replace.png)
+
+If the developer is using **AndroidStudio**, open the bulk replacement dialog from `Edit > Find > Replace` and follow the instructions below.
+
+![image](https://raw.githubusercontent.com/chenBingX/img/master/stv/属性替换.png)
+
+If only **SuperTextView** uses the same namespace (such as `app`) in the developer's project, then fortunately, you can simply replace `app:` with `app:stv_`.
+
+#### 5.2 setAdjuster(Adjuster) has been removed
+
+Starting with **SuperTextView** v2.0, the `setAdjuster(Adjuster)` function is marked for the state to be removed, and the new function `addAdjuster(Adjuster)` is added instead.
+
+In the new version, the `setAdjuster(Adjuster)` function will be officially removed. If the developer has used this method before, please change it to `addAdjuster(Adjuster)`.
+
+
+
+
+### 6 How to get started SuperTextView v3.1.1
+```
+dependencies {
+	 compile 'com.github.chenBingX:SuperTextView:v3.1.1'
+}
+```
+
+
+
+
+
+## v3.0 - Your long-awaited SuperTextView
+Today, **SuperTextView** has a range of common features such as fillets, borders, strokes, press discoloration, multi-state diagrams, fillet plots, versatile **Adjuster**, loading the net picture, and more. Thanks to this, developers can easily achieve a variety of very cumbersome effects, save a lot of development time, effectively reduce the complexity of the page, reduce project maintenance costs.
+
+Write the code, it should be so pleasing!
+
+### 1. Linked Cloud SuperTextView
+
+As early as a few months ago, many developers have suggested to **CoorChice** whether it is possible to have **SuperTextView** with the ability to load net picture. In fact, this is also **CoorChice** has been considered a long time ago, but in the early days of **SuperTextView**, perfecting its core functions is still the primary goal, so it has not been involved in image-related functions.
+
+Until the last big version, **SuperTextView** v2.0, **CoorChie** tried to add the picture display function. This has enabled the scope of the **SuperTextView** to be expanded, as well as the ability to add strokes, rounded corners, and state diagrams to pictures. Related documentation can be found at the following link:
+
+[【Hello， SuperTextView】 - https://www.jianshu.com/p/1b91e11e441d](https://www.jianshu.com/p/1b91e11e441d)
+
+This time, I got a good response from the developers. Everyone is looking forward to using **SuperTextView** to display and process picture. After the last release, developers seem to be more interested in a **SuperTextView** that can display the net picture.
+
+So, now, the long-awaited **SuperTextView** is coming back!
+
+![](https://raw.githubusercontent.com/chenBingX/img/master/stv/图片下载演示2.gif)
+
+#### 1.1 Load a net picture
+To display a net picture, you only need the following code in **SuperTextView**:
 
 ```
 SuperTextView stv_1 = (SuperTextView) findViewById(R.id.stv_1);
-//填入图片Url
+// fill in the picture Url
 stv_1.setUrlImage(url);
 ```
 
-效果就如上图中的第二个显示头像的例子一样。
+The effect is the same as the second example of displaying an avatar in the image above.
 
-如果你希望将网络图片作为 **SuperTextView** 的 StateDrawable 来展示的话，完全没问题。
+If you want to display the net picture as a StateDrawable of **SuperTextView**, it's fine.
 
 ```
-//填入图片Url
+// fill in the picture Url
 stv_1.setUrlImage(url, false);
 ```
 
-第二个参数为 **false** 表示网络图片将不会被作为背景充满整个 **SuperTextView**，而是作为一个状态图。当然，有关状态图的一切配置都将运用到此。就像上图中的第一个例子一样，整个布局包括图片、文字、背景都在一个 **SuperTextView** 中被处理，从网络下载的图片被作为 **StateDrawable** 放到了图中的位置。
+The second parameter is **false** to indicate that the net picture will not be filled with the entire **SuperTextView** as a background, but as a state diagram. Of course, everything about the state diagram will be used here. As in the first example above, the entire layout, including pictures, text, and background, is processed in a **SuperTextView**, and pictures downloaded from the net are placed as **StateDrawable** in the place.
 
-#### 1.2 SuperTextView中图片引擎
-**SuperTextView** 为了保持依赖库的纯净和尽可能小的体积，并没有内置任何的图片加载框架。所以默认情况，将使用内置的一个简易图片引擎去下载图片，确保开发者能够正常使用展示网络图片的功能。
+#### 1.2 Image engine in SuperTextView
+**SuperTextView** In order to keep the library dependent on the purity and the smallest possible size, there is no built-in image load framework. So by default, a simple image engine built-in will be used to download pictures, to ensure that developers can use the ability to display the net picture.
 
-但 **CoorChice** 仍然建议开发者根据项目的具体情况，选择一个目前正在使用的图片加载框架，设置到 **SuperTextView** 中，以用来加载图片。 **SuperTextView** 具备适配任意图片加载框架的能力。下面 **CoorChice** 将通过 Glide 和 Picasso 的例子展示如何将现有的图片框架安装到 **SuperTextView** 中。
+However, **CoorChice** still recommends that developers choose a image loading framework that is currently in use, depending on the project, and set it to **SuperTextView** to load the picture. **SuperTextView** has the ability to adapt to any image load framework. Below **CoorChice** will show you how to install an existing image framework into **SuperTextView** with the Glide and the Picasso examples.
 
-##### 1.2.1 实现图片引擎Engine
-在 **SuperTextView** 中，核心的图片加载引擎被抽象成接口 **Engine** ，开发者需要根据所用的图片框架，实现一个 **Engine**。
+##### 1.2.1 Implementing image engine
+In **SuperTextView**, the core image loading engine is abstracted into the interface **Engine**, and the developer needs to implement a **Engine** depending on the image frame used.
 
-- **Glide图片加载框架**
+- **the Glide Image load framework**
 
 ```
 public class GlideEngine implements Engine {
@@ -86,7 +299,7 @@ public class GlideEngine implements Engine {
         Glide.with(context).load(url).into(new SimpleTarget<GlideDrawable>() {
         @Override
         public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-            // 主要是通过callback返回Drawable对象给SuperTextView
+            // mainly through the callback return Drawable object to SuperTextView
             callback.onCompleted(resource);
         }
         });
@@ -94,7 +307,7 @@ public class GlideEngine implements Engine {
 }
 ```
 
-- **Picasso图片加载框架**
+- **the Picasso Image load framework**
 
 ```
 public class PicassoEngine implements Engine {
@@ -110,7 +323,7 @@ public class PicassoEngine implements Engine {
         Picasso.with(context).load(url).into(new Target() {
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            // 主要是通过callback返回Drawable对象给SuperTextView
+            // mainly through the callback return Drawable object to SuperTextView
             callback.onCompleted(new BitmapDrawable(Resources.getSystem(), bitmap));
         }
 
@@ -128,10 +341,10 @@ public class PicassoEngine implements Engine {
 }
 ```
 
-##### 1.2.2 安装图片引擎Engine
-实现好 **Engine** 后，下一步就是要将其安装到 **SuperTextView** 中。
+##### 1.2.2 Install Image Engine
+After implementing **Engine**, the next step is to install it into **SuperTextView**.
 
-**CoorChice** 建议可以在 Application的`onCreate()`中进行安装，这样当需要使用 **SuperTextView** 加载显示网络图片的时候，就能够用到三方图片框架了。
+**CoorChice** it is recommended to install in the `onCreate()` of the application, so that when you need to use **SuperTextView** to load and display the net picture, you can use the three-party image load framwork.
 
 ```
 public class STVApplication extends Application {
@@ -146,230 +359,233 @@ public class STVApplication extends Application {
 }
 ```
 
-一行代码，轻松安装。
+One line of code for easy installation.
 
-需要注意的是，任何时候，后安装的 **Engine** 实例总是会替换掉先前安装的 **Engine** 实例，即 **SuperTextView** 只允许全局存在一个 **Engine** 实例。
+It should be noted that at any time, the post-installed **Engine** instance will always replace the previously installed **Engine** instance, ie **SuperTextView** only allows one **Engine** instance to exist globally.
 
-现在，你可以让 **SuperTextView** 使用指定的三方图片加载框架去加载图片了。
+Now you can have **SuperTextView** load the picture using the specified three-party image load framework.
 
-![](http://ogemdlrap.bkt.clouddn.com/%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD%E5%88%97%E8%A1%A8%E6%BC%94%E7%A4%BA.gif)
+![](https://raw.githubusercontent.com/chenBingX/img/master/stv/图片下载列表演示.gif)
 
 
-### 2. 如何开始SuperTextView v3.0
+### 2. How to get started SuperTextView v3.0
 ```
 	dependencies {
 	   compile 'com.github.chenBingX:SuperTextView:v3.0.0'
 	}
 ```
-### 3. 其它
-- 修复一个动画问题
-- 一些优化
+### 3. Other
+- Fix an animation problem
+- Some optimization
 
-## v2.0 - 未来，从现在开始
-**一直以来，CoorChice都心存一个设想，期待着能够打造这样一个控件：它能满足你的大部分开发需求，展示文字、图片、几何、动画、状态，让你使用一个控件就能高效的完成大部分开发工作。它是如此的强大，仿佛有心智一般，接受着你的输入，按照你的心意，呈现出叹为观止的画面。随着【SuperTextView v2.0】的到来，我们离这个设想更近了一步。现在，来和【SuperTextView v2.0】见个面吧！**
 
-![SuperTextView v2.0](http://ogemdlrap.bkt.clouddn.com/stv_2.0_2.png)
 
-### 图片，就是现在
-在【SuperTextView v2.0】中，增加了对图片展示的支持。但不仅仅止于展示图片，它还能智能的根据你的输入将图片剪裁为你期望的形状。
+## v2.0 - The future, from now on
+**All along, CoorChice has a vision and expects to be able to create such a control: it can meet most of your development needs, display text, pictures, geometry, animation, state, so that you can use a control to be efficient Complete most of the development work. It is so powerful, as if it is mentally minded, accepting your input, and presenting a stunning picture according to your mind. With the arrival of 【SuperTextView v2.0】, we are one step closer to this idea. Now, come and see 【SuperTextView v2.0】!**
 
-![image](http://ogemdlrap.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-11-16%2001.51.33.png)
+![SuperTextView v2.0](https://raw.githubusercontent.com/chenBingX/img/master/stv/stv_2.0_2.png)
 
-给图片加上圆角，加上边框，或者直接变成圆形，所有的一切只需要设置几个简单的属性，即刻呈现在你的眼前。
+### 1 Now, Picture
+In 【SuperTextView v2.0】, support for image display has been added. But it's not just about displaying pictures, it's also smart to crop the image to your desired shape based on your input.
 
-#### 展示一张图片
-如何使用SuperTextView展示一张图片？只需要在xml中加上下面两句代码即可。
+![image](https://raw.githubusercontent.com/chenBingX/img/master/stv/屏幕快照%202017-11-16%2001.51.33.png)
+
+Add a rounded corner to the picture, add a border, or turn it directly into a circle. All you need to do is set a few simple properties that are instantly visible in front of your eyes.
+
+#### 1.1 Display Picture
+How to use **SuperTextView** to display a picture?
+
+Just add the following two lines of code to the xml.
 
 ```
 <com.coorchice.library.SuperTextView
     ...
-    app:state_drawable="@drawable/avatar1"
-    app:drawableAsBackground="true"
+    app:stv_state_drawable="@drawable/avatar1"
+    app:stv_drawableAsBackground="true"
     ...
  />
 ```
 
-如果你是`SuperTextView`的忠实用户的话，你会发现，原本的`state_drawable`现在可以被用来展示一张图片。
+If you are a loyal user of `SuperTextView`, you will find that the original `state_drawable` can now be used to display a picture.
 
-#### 给图片加上圆角
-现在，你的图片呈现在了你的眼前，也许你还想对它做一些不一样的事情，比如，加个圆角，或者直接变成圆形？没问题，`SuperTextView`现在完全能胜任这样的工作。
+#### 1.2 Fill the picture with rounded corners
+Now that your picture is in front of you, maybe you want to do something different about it, for example, add a rounded corner, or directly become a circle? No problem, `SuperTextView` is now fully qualified for this kind of work.
 
 ```
 <com.coorchice.library.SuperTextView
     android:layout_width="100dp"
     android:layout_height="100dp"
     ...
-    app:corner="15dp"
-    app:state_drawable="@drawable/avatar1"
-    app:drawableAsBackground="true"
+    app:stv_corner="15dp"
+    app:stv_state_drawable="@drawable/avatar1"
+    app:stv_drawableAsBackground="true"
     ...
  />
 ```
 
-如此简单！在原来的基础上你仅仅需要设置合理的`corner`值就行。
+So Easy! On the basis of the original you only need to set a reasonable the `corner`.
 
-#### 也许，你还想要边框
-有时候，你可能需要使用一个边框去包裹住你的图片，就像上面的示例那样。没错，这肯定在`SuperTextView`能力范围内。
+#### 1.3 Maybe you still want a border
+Sometimes you may need to use a border to wrap your picture, as in the example above. That's right, this is definitely within the scope of the `SuperTextView` capability.
 
 ```
 <com.coorchice.library.SuperTextView
     android:layout_width="100dp"
     android:layout_height="100dp"
     ...
-    app:corner="50dp"
-    app:stroke_color="#F4E187"
-    app:stroke_width="4dp"
-    app:state_drawable="@drawable/avatar1"
-    app:drawableAsBackground="true"
+    app:stv_corner="50dp"
+    app:stv_stroke_color="#F4E187"
+    app:stv_stroke_width="4dp"
+    app:stv_state_drawable="@drawable/avatar1"
+    app:stv_drawableAsBackground="true"
     ...
  />
 ```
 
-`app:stroke_color` 掌控着边框的颜色，`app:stroke_width` 掌控着边框的宽度。一切如此流畅，一个有心智的控件本该如此，对吗？
+`app:stv_stroke_color` controls the color of the border, and `app:stv_stroke_width` controls the width of the border. Everything is so smooth, a intelligent control should be like this, right?
 
 
-### 第二个状态图
-面对复杂的需求变化，【SuperTextView】为应对这种复杂性，孕育出了第二个状态图 `state_drawable2` 。
+### 2 Second StateDrawable
+In the face of complex changes in demand, 【SuperTextView】gave birth to a second drawable to deal with  this complexity.
+
+`state_drawable2` .
 
 
-![](http://ogemdlrap.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-11-16%2001.46.23.png)
+![](https://raw.githubusercontent.com/chenBingX/img/master/stv/屏幕快照%202017-11-16%2001.46.23.png)
 
-现在，CoorChice将向你展示，上图中的两种效果是如何实现的。
+Now, CoorChice will show you how the two effects in the above picture are implemented.
 
-- **示例一**
+- **eg. 1**
 
 ```
 <com.coorchice.library.SuperTextView
     android:layout_width="100dp"
     android:layout_height="100dp"
     ...
-    app:corner="50dp"
-    app:state_drawable="@drawable/avatar1"
-    app:drawableAsBackground="true"
-    // state_drawable2的配置由此开始
-    app:isShowState2="true"
-    app:state_drawable2="@drawable/recousers"
-    app:state_drawable2_mode="rightTop"
-    app:state_drawable2_height="20dp"
-    app:state_drawable2_width="20dp"
+    app:stv_corner="50dp"
+    app:stv_state_drawable="@drawable/avatar1"
+    app:stv_drawableAsBackground="true"
+    // The configuration of state_drawable2 starts here
+    app:stv_isShowState2="true"
+    app:stv_state_drawable2="@drawable/recousers"
+    app:stv_state_drawable2_mode="rightTop"
+    app:stv_state_drawable2_height="20dp"
+    app:stv_state_drawable2_width="20dp"
     ...
  />
 ```
 
-- **示例二**
+- **eg. 2**
 
 ```
 <com.coorchice.library.SuperTextView
     android:layout_width="100dp"
     android:layout_height="100dp"
     ...
-    // 背景图
+    // background
     android:background="@drawable/avatar7"
-    // drawable1的配置由此开始
-    app:isShowState="true"
-    app:state_drawable="@drawable/triangle"
-    app:state_drawable_mode="leftTop"
-    app:state_drawable_width="20dp"
-    app:state_drawable_height="20dp"
-    // state_drawable2的配置由此开始
-    app:isShowState2="true"
-    app:state_drawable2="@drawable/recousers"
-    app:state_drawable2_mode="rightTop"
-    app:state_drawable2_height="20dp"
-    app:state_drawable2_width="20dp"
+    // The configuration of drawable1 starts here
+    app:stv_isShowState="true"
+    app:stv_state_drawable="@drawable/triangle"
+    app:stv_state_drawable_mode="leftTop"
+    app:stv_state_drawable_width="20dp"
+    app:stv_state_drawable_height="20dp"
+    // The configuration of state_drawable2 starts here
+    app:stv_isShowState2="true"
+    app:stv_state_drawable2="@drawable/recousers"
+    app:stv_state_drawable2_mode="rightTop"
+    app:stv_state_drawable2_height="20dp"
+    app:stv_state_drawable2_width="20dp"
     ...
  />
 ```
 
-就如你所熟悉的一样，`state_drawable2` 延续了第一代一切流畅的操作。在聪明的你合理的使用下，【SuperTextView】一定能够大放异彩！😉
+As you are familiar with, `state_drawable2` continues all the smooth operations of the first generation. Under the wise use of your smart, 【SuperTextView】 will be able to shine! 😉
 
-### 属于Adjuster的时代
-此前，`Adjuster` 的设计使得【SuperTextView】具有了灵魂，成为更聪明的控件。对绘制过程的插入，触摸事件的捕捉，使得你能轻松的从外部改变一个控件的状态。创意始于心，而行于此。
+### 3 The era of Adjuster
+Previously, the design of `Adjuster` made 【SuperTextView】a soul and a smarter control. The insertion of the drawing process, the capture of touch events, makes it easy to change the state of a control from the outside. Creativity begins with the heart and goes here.
 
-现在，【SuperTextView】能够同时承载最多3个 `Adjuster` ！也许，你的创意会更加的炫目。
+Now, 【SuperTextView】can carry up to 3 `Adjuster` at the same time! Maybe your creativity will be more dazzling.
 
-![](http://ogemdlrap.bkt.clouddn.com/%E5%A4%9AAdjuster%E6%BC%94%E7%A4%BA4.gif)
+![](https://raw.githubusercontent.com/chenBingX/img/master/stv/多Adjuster演示.gif)
 
-在上面这个示例中，CoorChice将早起的两个【扫光】和【涟漪】特效都加入到了一个【SuperTextView】中，结果就是你看到的这样。
+In the above example, CoorChice adds the two early  the【Sweep】and the【Move】effects to a 【SuperTextView】, and the result is what you see.
 
-更多的 `Adjuster` 意味着更多的组合，更多的惊喜。在【v1.4.0】中，CoorChice同样使用了 `Adjuster` 来轻松的实现了按压变色功能。
+More `Adjuster` means more combinations and more surprises. In 【v1.4.0】, CoorChice also uses `Adjuster` to easily implement the press color change function.
 
-这是 `Adjuster` 的时代，睿智的你一定可以运用它挥洒创意的。
+This is the era of `Adjuster`, you can use it to be creative.
 
-需要注意的是⚠️，原本的 `setAdjuster(Adjuster)` 方法目前仍然被保留，但以后的版本将会被移除，你必须要尽快迁移。新的替代方法为 `addAdjuster(Adjuster)` 。
+⚠️ Note that the original `setAdjuster(Adjuster)` method is still preserved, but future versions will be removed and you must migrate as soon as possible. The new alternative is `addAdjuster(Adjuster)`.
 
-### 其它
-- 修正控制Shader模式的属性 `app:shaderMode="leftToRight"` 的拼写。原来为 `app:shaderMode="leftTopRight"` 。如果你使用了该属性，在升级【SuperTextView v2.0】后请及时修正。
-- 增加 `set/getPressBgColor()` 和 `set/getPressTextColor()` 用于在代码中控制按压背景色。
+### 4 Other
+- Fixed spelling of the property `app:stv_shaderMode="leftToRight"` that controls the Shader mode. The right is`app:stv_shaderMode="leftTopRight"` . If you use this property, please correct it after upgrading 【SuperTextView v2.0】.
+- Added `set/getPressBgColor()` and `set/getPressTextColor()` to control the background color in the code.
+
 
 
 ## v1.4.0
-- 千呼万唤使出来！你想要的按压变色效果在这里！
+- SuperTextView support to press to change background color  and text color.
 
-![image](http://ogemdlrap.bkt.clouddn.com/%E6%8C%89%E5%8E%8B%E5%8F%98%E8%89%B2.gif)
+![image](https://raw.githubusercontent.com/chenBingX/img/master/stv/按压变色.gif)
 
-只需在xml文件中设置以下两个属性就能轻松实现按压变色效果，例如上图那样的：
+You just need to set these properties at the xml file like this:
 
 ```
-# 设置按压时的背景色
-app:pressBgColor="@color/red"
-# 设置按压时的文字颜色
-app:pressTextColor="@color/white"
+# set the background color when you pressed
+app:stv_pressBgColor="@color/red"
+# set the text color when you pressed
+app:stv_pressTextColor="@color/white"
 ```
-这个功能是依托内置一个`Adjuster`实现的，你可以看看这[]()。
-
-CoorChice想说的是，`Adjuster`是`SuperTextView`的灵魂所在，它能够让一切创意变成可能。
-
-- 暴露一个新的方法`getCorners()`。你可以通过它获得`SuperTextView`的所有圆角信息，有时候你真的很需要它。
-- 如何使用SuperTextView v1.4？
+- There is a new method `getCorners()`. You can get the infomation of the corners in the `SuperTextView`, sometimes you really want to use this method.
+- How to use SuperTextView v1.4？
 
 ```
 dependencies {
 	compile 'com.github.chenBingX:SuperTextView:v1.4'
 }
 ```
-
-
 ## v1.3
-- 支持随时修改动画帧率。难以置信的是，你甚至可以在动画执行过程中随时修改！当然最好不要这么做。
+- Now, you can change frame rate at any time.
 
 ```
 mSuperTextView.setFrameRate(30);
-// 修改帧率为30帧
+// set 30 fps
 ```
-- 优化动画驱动的性能。
-- 酷炫不止，渐变来袭！
+- Optimize the animation performance.
+- Cool, Cool, Cool! Shader is coming！
 
-![link](http://ogemdlrap.bkt.clouddn.com/%E6%B8%90%E5%8F%98%E8%89%B2.png)
+![link](https://raw.githubusercontent.com/chenBingX/img/master/stv/渐变色.png)
 
-一触即变，想象不至于此。艺术家，发挥你的创造力吧！
+A touch namely change, imagine can't be stop. Artist, play to your creativity！
 
-同样，渐变效果的设置支持在xml中设置，并且能够即时预览。
+You can set the Shader Effect in the xml, and you can。
 
 ```
-app:shaderEnable="true"
-// 必须设置为true才能启用渐变功能。这意味着你可以灵活的控制这一功能。
+app:stv_shaderEnable="true"
+// set true to begin shader.
 
-app:shaderStartColor="@color/main_blue"
-// 设置起始颜色。
+app:stv_shaderStartColor="@color/main_blue"
+// set shader start color.
 
-app:shaderEndColor="@color/pink"
-// 设置结尾颜色。
+app:stv_shaderEndColor="@color/pink"
+// set shader end color.
 
-app:shaderMode="rightToLeft"
-// 设置渐变模式。如上图可见，一共支持4中模式：
+app:stv_shaderMode="rightToLeft"
+// set shader mode. These are four mode：
 // topTopBottom, bottomToTop, leftToRight, rightToLeft
 ```
-当然，这些属性也都提供了对应的`set/get`方法，供你在Java中动态改变／获取它们的值。比如：
+
+Of course, these properties can be changed by `set/get` method. eg：
 
 ```
 mSuperTextView.setShaderStartColor(Color.RED);
 ```
-- 现在，提供了**SuperTextView**的详尽文档，你可以到这下载查看（解压后打开目录下的`index.html`开始）：
-[**SuperTextView文档：http://ogemdlrap.bkt.clouddn.com/SuperTextView%E6%96%87%E6%A1%A3%20.zip?attname=**](http://ogemdlrap.bkt.clouddn.com/SuperTextView%E6%96%87%E6%A1%A3%20.zip?attname=)
 
-- 如何使用SuperTextView 1.3
-  在你的**build.gradle**中加入：
+- Now, **SuperTextView** javadoc is provided, you can download from here（click `index.html` to begin）：
+[**SuperTextView javadoc：http://ogemdlrap.bkt.clouddn.com/SuperTextView%E6%96%87%E6%A1%A3%20.zip?attname=**](http://ogemdlrap.bkt.clouddn.com/SuperTextView%E6%96%87%E6%A1%A3%20.zip?attname=)
+
+- how to use SuperTextView 1.3
+  in the **build.gradle**：
 
 ```
 allprojects {
@@ -383,138 +599,116 @@ dependencies {
     compile 'com.github.chenBingX:SuperTextView:v1.3'
 }
 ```
-
 ---
 
-
-
 ## v1.1
-- 最低支持Android 4.0，SdkVersion 14。
-- 支持优雅动人的 **【链式表达式】** , eg:
+- Support Android 4.0，SdkVersion 14.
+- Support elegant fascinating **【Chain Programming】** , eg:
+
+
 ```
 mSuperTextView.setAdjuster(new MoveEffectAdjuster())
         .setAutoAdjust(true)
         .startAnim();
 ```
-- 减小占用空间。
 
-# 简介
-欢迎使用**SuperTextView**，这篇文档将会向你展示如何使用这个控件来提高你构建项目的效率。
-![Cover](http://ogemdlrap.bkt.clouddn.com/SuperTextView_cover0.png)
+- Reduce the library memory.
 
-**SuperTextView**继承自TextView，它能够大量的减少布局的复杂程度，并且使得一些常见的效果变得十分容易实现且高效。同时，它内置了动画驱动，你只需要合理编写**Adjuster**，然后`startAnim()`就可以看到预期的动画效果。它仅仅是一个控件，所以你可以不费吹灰之力的在你的项目中集成使用。
-
-# 特点
-1. 你从此不必再为背景图编写和管理大量<shape>文件了。
-2. 重新优化的**状态图功能**使得你能够精确的控制状态图的大小，以及在**SuperTextView**中的位置。
-3. 支持设置圆角，并且能够精确的控制圆角位置。
-4. 能够轻松的实现控件边框效果。
-5. 支持文字描边，这使得空心文字效果成为了可能。
-6. 内置动画驱动，你只需配合**Adjuster**合理的使用即可。
-7. **Adjuster**的出现，使得你对控件的绘制过程具有了掌控权，良好的设计使得它能够完美的实现绝大部分你脑海中的效果。
-
-# 使用指南
-## 支持的属性
-**SuperTextView**十分方便的支持在xml中直接设置属性，并且你能够立即看到效果。就像你平时使用TextView一样方便。
+## v1.0
+### 1 Attribute
+**SuperTextView** properties can be set in the XML easily, and you can see the effect immediately. Just like to use TextView.
 
 ```
 <SuperTextView
     android:layout_width="50dp"
     android:layout_height="50dp"
 
-    //设置圆角。会同时作用于填充和边框(如果边框存在的话)。
-    //如果要设置为圆形，只需要把该值设置为宽或长的1/2即可。
-    app:corner="25dp"
-    //设置左上角圆角
-    app:left_top_corner="true"
-    //设置右上角圆角
-    app:right_top_corner="true"
-    //设置左下角圆角
-    app:left_bottom_corner="true"
-    //设置右下角圆角
-    app:right_bottom_corner="true"
-    //设置填充颜色
-    app:solid="@color/red"
-    //设置边框颜色
-    app:stroke_color="@color/black"
-    //设置边框的宽度。
-    app:stroke_width="2dp"
-    //放置一个drawable在背景层上。默认居中显示。
-    //并且默认大小为SuperTextView的一半。
-    app:state_drawable="@drawable/emoji"
-    //设置drawable的显示模式。可选值如下：
-    // left、top、right、bottom、center(默认值)、
+    //Set Corner.
+    //If you want to get a circle, you just need to set the value of half of width.
+    app:stv_corner="25dp"
+    //Corner of left-top
+    app:stv_left_top_corner="true"
+    //Corner of right-top
+    app:stv_right_top_corner="true"
+    //Corner of left-bottom
+    app:stv_left_bottom_corner="true"
+    //Corner of right-bottom
+    app:stv_right_bottom_corner="true"
+    //Fill color
+    app:stv_solid="@color/red"
+    //Stroke color
+    app:stv_stroke_color="@color/black"
+    //Stroke width
+    app:stv_stroke_width="2dp"
+    //Set a state drawbale
+    //The default size is half of the SuperTextView.
+    app:stv_state_drawable="@drawable/emoji"
+    //The mode of the state drawable. Optional values:
+    // left、top、right、bottom、center(Default)、
     //leftTop、rightTop、leftBottom、rightBottom、
-    //fill(充满整个SuperTextView，此时会使设置drawable的大小失效)
-    app:state_drawable_mode="center"
-    //设置drawable的height
-    app:state_drawable_height="30dp"
-    //设置drawable的width
-    app:state_drawable_width="30dp"
-    //设置drawble相对于基础位置左边的距离
-    app:state_drawable_padding_left="10dp"
-    //设置drawble相对于基础位置上边的距离
-    app:state_drawable_padding_top="10dp"
-    // boolean类型。是否显示drawable。
-    //如果你想要设置的drawable显示出来，必须设置为true。
-    //当不想让它显示时，再设置为false即可。
-    app:isShowState="true"
-    //是否开启文字描边功能。
-    //注意，启用这个模式之后通过setTextColor()设置的颜色将会被覆盖。
-    //你需要通过text_fill_color来设置文字的颜色。
-    app:text_stroke="true"
-    // 文字的描边颜色。默认为Color.BLACK。
-    app:text_stroke_color="@color/black"
-    // 文字描边的宽度。
-    app:text_stroke_width="1dp"
-    // 文字填充的颜色。默认为Color.BLACK。
-    app:text_fill_color="@color/blue"
-    // boolean类型。是否启用Adjuster功能。
-    //具体干什么，需要在Java中为SuperTextView实现一个Adjuster。
-    //当你启用这个功能而没有实现自己的Adjuster时，
-    //SuperTextView会启用默认的Adjuster。它会按照一定的规则调整文字大小。
-    app:autoAdjust="true"
+    //fill(Fill the SuperTextView. In this case, set state drawable size will not work.)
+    app:stv_state_drawable_mode="center"
+    //state drawable height
+    app:stv_state_drawable_height="30dp"
+    //state drawable width
+    app:stv_state_drawable_width="30dp"
+    //The padding of the left, it base on the value of state_drawable_mode.
+    app:stv_state_drawable_padding_left="10dp"
+    //The padding of the top, it base on the value of state_drawable_mode.
+    app:stv_state_drawable_padding_top="10dp"
+    //boolean. Whether to show the state drawble.
+    app:stv_isShowState="true"
+    //Whether to use the Stroke Text Function.
+    //Attention, Once you opne this function, setTextColor() will not work.
+    //That means you must to uses text_fill_color to set text color.
+    app:stv_text_stroke="true"
+    // Text stroke color. The default value is Color.BLACK.
+    app:stv_text_stroke_color="@color/black"
+    // Stroke text width.
+    app:stv_text_stroke_width="1dp"
+    // Stroke text color. The default value is Color.BLACK.
+    app:stv_text_fill_color="@color/blue"
+    //boolean. Whether to use the Adjuster Function.
+    //Use this function to do what you want to do.
+    //If open this function, but you haven't implemented your Adjuster, the DefaultAdjuster will be used.
+    //The DefaultAdjuster can auto adjust text size.
+    app:stv_autoAdjust="true"
     />
 
 ```
-
-以上这些属性，均可以在Java中进行动态的设置。同时也能够获得它们的值。例如：
-
+All the attributes can be set in the java. You can also to get their value. e.g.:
 
 ```
 mSuperTextView.setCorner(10);
 mSuperTextView.getCorner();
 ```
+#### 1.1 Corner And Border
+![image](https://raw.githubusercontent.com/chenBingX/img/master/stv/屏幕快照%202017-04-18%2008.15.42.png)
 
-### 圆形和边框
-![image](http://ogemdlrap.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-04-18%2008.15.42.png)
+Usually, you have to write and manage a lot of <shape> file to implement the effect of the above chart. But now, you can easy to do this in the XML.
 
-为了实现上图效果，通常你需要编写和管理大量的<shape>文件。现在你只需要在xml或代码中对**SuperTextView**直接进行设置即可。
+#### 1.2 Not Simple Corner
+![image](https://raw.githubusercontent.com/chenBingX/img/master/stv/屏幕快照%202017-04-18%2008.15.59.png)
 
-### 不简单的圆角
-![image](http://ogemdlrap.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-04-18%2008.15.59.png)
+Different from general Corner, **SuperTextView** can support to precise control the location of corner. One, two , three, what ever you want.
 
-不同于简单的圆角，**SuperTextView**支持精确的控制圆角的位置。一个、两个、三个都没问题。一切由你掌控。
+#### 1.3 Amazing Stroke Text
+![](https://raw.githubusercontent.com/chenBingX/img/master/stv/屏幕快照%202017-04-18%2008.16.13.png)
 
-### 神奇的文字描边
-![image](http://ogemdlrap.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-04-18%2008.16.13.png)
+Use Stroke text is so easily！
 
-文字描边从未如此简单！
+#### 1.4 High-Efficient State Drawable
+![](https://raw.githubusercontent.com/chenBingX/img/master/stv/屏幕快照%202017-04-18%2008.16.22.png)
 
-### 高效的状态图
-![image](http://ogemdlrap.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-04-18%2008.16.22.png)
+Different from general state drawable, **SuperTextView** supports more precise control options. You can easy to set state drawable, just to use one attribute.
 
-不同于原生的Drawable，**SuperTextView**对于Drawable提供了更多精细化的控制操作。你能够轻松的指定Drawable大小以及位置，只需一个属性就能搞定。
+### 2 Explosive Adjuster
+**Adjuster** is be designed to insert some options in the drawing process of the **SuperTextView**. It has very important sense. e.g. The **DefaultAdjuster** can auto adjust text size before the text be draw. Of course, you can use it to do any thing.
 
-相信你一定深有感触，想要实现上图中的效果，往往需要嵌套多层布局(一般3层吧？)。而**SuperTextView**只需一个控件，并且十分简单高效的就能实现。它能够大量的减少你的App中的布局复杂程度，减少视图树的绘制时间。
+**If you want to use Adjuster, you must to invoke `SuperTextView.setAutoAdjust(true)`. Of course, you can invoke `SuperTextView.setAutoAdjust(false)` to stop it at any time. You should invoke these method carefully. Because, once you invoke the `SuperTextView.setAutoAdjust(true)`, but didn't set your Adjuster before, the DefaultAdjuster will be used immediately.Until you set yourself Adjuster.**
 
-## 炸裂的Adjuster
-**Adjuster**被设计用来在**SuperTextView**的绘制过程中插入一些操作。这具有非常重要的意义。比如，默认实现的**DefaultAdjuster**能够动态的调整文字的大小。当然，你可以用它来实现各种各样的效果。
-
-**想要Adjuster生效，你必须调用`SuperTextView.setAutoAdjust(true)`来启用Adjuster功能。当然，你可以所以方便的停止，通过调用`SuperTextView.setAutoAdjust(false)`。并且，你需要注意调用顺序，因为一旦调用了`SuperTextView.setAutoAdjust(true)`，而Adjuster没有被设置的话，将会启用默认的`DefaultAdjuster`(它能够动态的调整文字大小)，直到你设置了你自己的Adjuster**
-
-### 干预控件的绘制
-实现一个Adjuster需要继承SuperTextView.Adjuster，并且实现`adjust(SuperTextView v, Canvas canvas)`方法。Adjuster.adjust()会在每次绘制过程中被调用，这意味着你能够不可思议的从外部干预控件的绘制过程。
+#### 2.1 Intervene Drawing
+To implement a Adjuster, you need to extends SuperTextView.Adjuster，and implement `adjust(SuperTextView v, Canvas canvas)` method. Adjuster.adjust() will be invoke whenever the draw happened, that means you can intervene the drawing process in the outside.
 
 ```
 public class YourAdjuster extends SuperTextView.Adjuster {
@@ -526,15 +720,14 @@ public class YourAdjuster extends SuperTextView.Adjuster {
 
 }
 ```
+**Attention, if you start animation, you must be very careful to write the code in the adjuster(). Because the animation will be draw 60fps/s. That means, this method will be invoked 60 times in a second！So, do not to create any new object in this method. Otherwise, your app will be get a big lag！Because it will cause【Memory Thrashing】, and GC occur frequently. About the detail reason, you can see my this two articles:**
+- [【Android Memory Thrashing : http://www.jianshu.com/p/69e6f894c698】](http://www.jianshu.com/p/69e6f894c698)
+- [【Two chart to tell you why your app lags? : http://www.jianshu.com/p/df4d5ec779c8】](http://www.jianshu.com/p/df4d5ec779c8)
 
-**注意，如果开启动画，你必须十分谨慎的编写adjuster()中的代码。因为动画会以60帧/每秒的速度进行绘制。这意味着，这个方法每秒会被调用60次！所以，千万不要在这个方法中重复的创建对象，会卡爆的！原因是短时间的大量将会引起【内存抖动】，导致GC频繁发生。相关知识你可以看看我的这两篇文章：**
-- [【Android内存基础——内存抖动http://www.jianshu.com/p/69e6f894c698】](http://www.jianshu.com/p/69e6f894c698)
-- [【用两张图告诉你，为什么你的App会卡顿?http://www.jianshu.com/p/df4d5ec779c8】](http://www.jianshu.com/p/df4d5ec779c8)
 
+#### 2.2 Response Touch Event
 
-### 响应触摸事件
-
-如果你重载Adjuster的`onTouch(SuperTextView v, MotionEvent event)`方法，你将能够获得**SuperTextView**的触摸事件。这是重要的一点，如果你想持续的对**SuperTextView**的触摸事件进行处理，你必须使`onTouch()`返回true。否则你只能接收到一个ACTION_DOWN事件，而不是一个事件流。
+If you override the `onTouch(SuperTextView v, MotionEvent event)` method of the Adjuster, you will get the touch events of the **SuperTextView**. It's very important to get a series of touch events of **SuperTextView** to handle. And you must return true in the `onTouch()`, Otherwise you will just get a  ACTION_DOWN event, not a flow of events.
 
 ```
 public class YourAdjuster extends SuperTextView.Adjuster {
@@ -553,59 +746,62 @@ public class YourAdjuster extends SuperTextView.Adjuster {
 }
 ```
 
-### 如此惊艳的效果
+#### 2.3 So Amazing Effect
 
-得益于**SuperTextView**内置的动画驱动，你能够结合Adjuster来实现难以置信的动画效果。一切只需要在你合理的编写好Adjuster后，调用`startAnim()`和`stopAnim()`来启动／停止动画。
+Because the **SuperTextView** the build-in animation driven, you can use Adjuster to implement the unbelievable effect. All the things you need to do is invoke `startAnim()`and `stopAnim()` to start or stop animation after your Adjuster write down.
 
-![link](http://ogemdlrap.bkt.clouddn.com/SuperTextView.gif)
+![](https://raw.githubusercontent.com/chenBingX/img/master/stv/SuperTextView.gif)
 
-如你所见，上面的效果就是通过Adjuster来实现的。并且这种**拔插式**的设计，使得你能够随时在同一个**SuperTextView**上使用新的Adjuster，你所有需要做的事情就是创建一个新的Adjuster，然后调用`setAdjuster()`。
+As you can see, these beautiful effect is be implemented by Adjuster. This **pull plugin** design, makes you can use a new Adjuster in the **SuperTextView** at any time. You just need to create a new Adjuster, then invoke `setAdjuster()`.
 
-之前`@Alex_Cin`希望看到Ripple涟漪效果，所以在`RippleAdjuster.java`中，我演示了如何使用Adjuster和动画驱动配合实现上图的Rippler涟漪效果。[【RippleAdjuster.java链接：https://github.com/chenBingX/SuperTextView/blob/master/app/src/main/java/com/coorchice/supertextview/SuperTextView/Adjuster/RippleAdjuster.java】](https://github.com/chenBingX/SuperTextView/blob/master/app/src/main/java/com/coorchice/supertextview/SuperTextView/Adjuster/RippleAdjuster.java)
+`@Alex_Cin` hopes to see the Ripple Effect, so in the `RippleAdjuster.java`, I've shown how to use Adjuster with Animation Driven to implement the Ripple Effect. [【RippleAdjuster.java link：https://github.com/chenBingX/SuperTextView/blob/master/app/src/main/java/com/coorchice/supertextview/SuperTextView/Adjuster/RippleAdjuster.java】](https://github.com/chenBingX/SuperTextView/blob/master/app/src/main/java/com/coorchice/supertextview/SuperTextView/Adjuster/RippleAdjuster.java)
 
-看，你可以使用Adjuster实现自己的Ripple效果。
+See, you can implement your Ripple Effect.
 
-### 指定Adjuster的层级
-**Adjuster**贴心的设计了控制作用层级的功能。你可以通过`Adjuster.setOpportunity(Opportunity opportunity)`来指定Adjuster的绘制层级。
+#### 2.4 Set the hierarchy of Adjuster
+**Adjuster** is sweet designed the hierarchy function. You invoke `Adjuster.setOpportunity(Opportunity opportunity)` to set the hierarchy of your Adjuster in the **SuperTextView**.
 
-在**SuperTextView**中，绘制层级被从下到上分为：背景层、Drawable层、文字层3个层级。通过Opportunity来指定你的Adjuster想要插入到那个层级间。
+In the **SuperTextView**, the hierarchy is from bottom to top is divided into：Background Hierarchy、Drawable Hierarchy、Text Hierarchy. You can use Opportunity to set the hierarchy of your Adjuster to that you want layer.
 
 ```
 public enum Opportunity {
-      BEFORE_DRAWABLE, //背景层和Drawable层之间
-      BEFORE_TEXT,     //Drawable层和文字层之间
-      AT_LAST          //最上层
+      BEFORE_DRAWABLE, //between backgournd layer and drawable layer
+      BEFORE_TEXT,     //between drawable layer and text layer
+      AT_LAST          //The top layer
 }
 ```
+Opportunity chart.
 
-三种类型的Opportunity示意图。
+![](https://raw.githubusercontent.com/chenBingX/img/master/stv/Opportunity.png)
 
-![image](http://ogemdlrap.bkt.clouddn.com/Opportunity.png)
+The default value is `Opportunity.BEFORE_TEXT`. Like the second chart.
 
-默认值是`Opportunity.BEFORE_TEXT`。即第二张图的示例。
+In fact, **SuperTextView** like a canvas, and you can draw your creative on it. It makes you forces on the creation, and you never need to write these useless code.
 
-事实上，只要你愿意，**SuperTextView**就相当于一张画布，你可以在上面任意的挥洒你的创意。它能够让你专注于创作，而不用去在意编写那些无用麻烦的代码。
+Now you can start using **SuperTextView**.
 
-# 如何开始使用
+> - If you like [**SuperTextView**](https://github.com/chenBingX/SuperTextView), I thank you to go to the [**Github**](https://github.com/chenBingX/SuperTextView) to give me a  [**star** 🌟](https://github.com/chenBingX/SuperTextView) !
 
-在你的**build.gradle**中加入：
+> - In addition, **CoorChice** will occasionally share dry goods on the blog platform, including **Android related technology**, **machine learning**, **algorithm**,**new technology**, And ** some insights and thoughts about personal development and improvement**. Go to [CoorChice's 【Personal Homepage】](https://juejin.im/user/57fc43b67db2a200595ffd94)  to give me a follow.
 
-```
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
+> - SuperTextView QQ Group：***775951525***
 
-dependencies {
-    compile 'com.github.chenBingX:SuperTextView:v3.0.0'
-}
-```
+# License
 
-现在，你可以开始使用**SuperTextView**了。
 
-> - 如果你或你的团队正在使用 **SuperTextView**，可以通过邮箱 [`coorchice.cb@alibaba-inc.com`](coorchice.cb@alibaba-inc.com) 告知我。
-> - 如果你喜欢**SuperTextView**，希望能顺手在 [**Github**](https://github.com/chenBingX/SuperTextView) 点个**star**哦！
 
+
+    Copyright 2017 CoorChice
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 

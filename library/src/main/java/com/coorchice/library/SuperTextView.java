@@ -19,13 +19,6 @@
 package com.coorchice.library;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.coorchice.library.image_engine.Engine;
-import com.coorchice.library.sys_adjusters.PressAdjuster;
-import com.coorchice.library.utils.STVUtils;
-
 import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
@@ -37,6 +30,8 @@ import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -46,10 +41,25 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
+import com.coorchice.library.image_engine.Engine;
+import com.coorchice.library.sys_adjusters.PressAdjuster;
+import com.coorchice.library.utils.LogUtils;
+import com.coorchice.library.utils.STVUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class SuperTextView extends TextView {
 
+    /**
+     * 标识不进行颜色的更改
+     */
     public static final int NO_COLOR = -99;
+    /**
+     * 标识不进行旋转
+     */
+    public static final float NO_ROTATE = -1000;
     // Some Property Default Value
     private static final float DEFAULT_CORNER = 0f;
     private static final int DEFAULT_SOLID = Color.TRANSPARENT;
@@ -117,10 +127,15 @@ public class SuperTextView extends TextView {
     private int shaderStartColor;
     private int shaderEndColor;
     private ShaderMode shaderMode;
-    private LinearGradient shader;
+    private LinearGradient solidShader;
     private boolean shaderEnable;
-    private int pressBgColor;
-    private int pressTextColor;
+    private int textShaderStartColor;
+    private int textShaderEndColor;
+    private ShaderMode textShaderMode;
+    private boolean textShaderEnable;
+    private LinearGradient textShader;
+    private int pressBgColor = Color.TRANSPARENT;
+    private int pressTextColor = NO_COLOR;
     private boolean drawableAsBackground;
     private BitmapShader drawableBackgroundShader;
 
@@ -129,6 +144,11 @@ public class SuperTextView extends TextView {
     private Runnable handleAnim;
     private boolean superTouchEvent;
     private String curImageUrl;
+
+    private int drawableTint = NO_COLOR;
+    private float drawableRotate = NO_ROTATE;
+    private int drawable2Tint = NO_COLOR;
+    private float drawable2Rotate = NO_ROTATE;
 
 
     /**
@@ -190,62 +210,86 @@ public class SuperTextView extends TextView {
         if (attrs != null) {
             TypedArray typedArray =
                     getContext().obtainStyledAttributes(attrs, R.styleable.SuperTextView);
-            corner = typedArray.getDimension(R.styleable.SuperTextView_corner, DEFAULT_CORNER);
+            corner = typedArray.getDimension(R.styleable.SuperTextView_stv_corner, DEFAULT_CORNER);
             leftTopCornerEnable =
-                    typedArray.getBoolean(R.styleable.SuperTextView_left_top_corner, false);
+                    typedArray.getBoolean(R.styleable.SuperTextView_stv_left_top_corner, false);
             rightTopCornerEnable =
-                    typedArray.getBoolean(R.styleable.SuperTextView_right_top_corner, false);
+                    typedArray.getBoolean(R.styleable.SuperTextView_stv_right_top_corner, false);
             leftBottomCornerEnable =
-                    typedArray.getBoolean(R.styleable.SuperTextView_left_bottom_corner, false);
+                    typedArray.getBoolean(R.styleable.SuperTextView_stv_left_bottom_corner, false);
             rightBottomCornerEnable =
-                    typedArray.getBoolean(R.styleable.SuperTextView_right_bottom_corner, false);
-            solid = typedArray.getColor(R.styleable.SuperTextView_solid, DEFAULT_SOLID);
-            strokeWidth = typedArray.getDimension(R.styleable.SuperTextView_stroke_width,
+                    typedArray.getBoolean(R.styleable.SuperTextView_stv_right_bottom_corner, false);
+            solid = typedArray.getColor(R.styleable.SuperTextView_stv_solid, DEFAULT_SOLID);
+            strokeWidth = typedArray.getDimension(R.styleable.SuperTextView_stv_stroke_width,
                     DEFAULT_STROKE_WIDTH);
             strokeColor =
-                    typedArray.getColor(R.styleable.SuperTextView_stroke_color, DEFAULT_STROKE_COLOR);
-            drawable = typedArray.getDrawable(R.styleable.SuperTextView_state_drawable);
+                    typedArray.getColor(R.styleable.SuperTextView_stv_stroke_color, DEFAULT_STROKE_COLOR);
+
+            drawable = typedArray.getDrawable(R.styleable.SuperTextView_stv_state_drawable);
+            if (drawable != null) {
+                drawable = drawable.mutate();
+            }
             drawableWidth =
-                    typedArray.getDimension(R.styleable.SuperTextView_state_drawable_width, 0);
+                    typedArray.getDimension(R.styleable.SuperTextView_stv_state_drawable_width, 0);
             drawableHeight =
-                    typedArray.getDimension(R.styleable.SuperTextView_state_drawable_height, 0);
+                    typedArray.getDimension(R.styleable.SuperTextView_stv_state_drawable_height, 0);
             drawablePaddingLeft =
-                    typedArray.getDimension(R.styleable.SuperTextView_state_drawable_padding_left, 0);
+                    typedArray.getDimension(R.styleable.SuperTextView_stv_state_drawable_padding_left, 0);
             drawablePaddingTop =
-                    typedArray.getDimension(R.styleable.SuperTextView_state_drawable_padding_top, 0);
-            drawable2 = typedArray.getDrawable(R.styleable.SuperTextView_state_drawable2);
+                    typedArray.getDimension(R.styleable.SuperTextView_stv_state_drawable_padding_top, 0);
+            drawableTint = typedArray.getColor(R.styleable.SuperTextView_stv_state_drawable_tint, NO_COLOR);
+            drawableRotate = typedArray.getFloat(R.styleable.SuperTextView_stv_state_drawable_rotate, NO_ROTATE);
+
+
+            drawable2 = typedArray.getDrawable(R.styleable.SuperTextView_stv_state_drawable2);
+            if (drawable2 != null) {
+                drawable2 = drawable2.mutate();
+            }
             drawable2Width =
-                    typedArray.getDimension(R.styleable.SuperTextView_state_drawable2_width, 0);
+                    typedArray.getDimension(R.styleable.SuperTextView_stv_state_drawable2_width, 0);
             drawable2Height =
-                    typedArray.getDimension(R.styleable.SuperTextView_state_drawable2_height, 0);
+                    typedArray.getDimension(R.styleable.SuperTextView_stv_state_drawable2_height, 0);
             drawable2PaddingLeft =
-                    typedArray.getDimension(R.styleable.SuperTextView_state_drawable2_padding_left, 0);
+                    typedArray.getDimension(R.styleable.SuperTextView_stv_state_drawable2_padding_left, 0);
             drawable2PaddingTop =
-                    typedArray.getDimension(R.styleable.SuperTextView_state_drawable2_padding_top, 0);
-            isShowState = typedArray.getBoolean(R.styleable.SuperTextView_isShowState, false);
+                    typedArray.getDimension(R.styleable.SuperTextView_stv_state_drawable2_padding_top, 0);
+            drawable2Tint = typedArray.getColor(R.styleable.SuperTextView_stv_state_drawable2_tint, NO_COLOR);
+            drawable2Rotate = typedArray.getFloat(R.styleable.SuperTextView_stv_state_drawable2_rotate, NO_ROTATE);
+
+            isShowState = typedArray.getBoolean(R.styleable.SuperTextView_stv_isShowState, false);
             drawableAsBackground =
-                    typedArray.getBoolean(R.styleable.SuperTextView_drawableAsBackground, false);
-            isShowState2 = typedArray.getBoolean(R.styleable.SuperTextView_isShowState2, false);
-            stateDrawableMode = DrawableMode.valueOf(typedArray.getInteger(R.styleable.SuperTextView_state_drawable_mode,
+                    typedArray.getBoolean(R.styleable.SuperTextView_stv_drawableAsBackground, false);
+            isShowState2 = typedArray.getBoolean(R.styleable.SuperTextView_stv_isShowState2, false);
+            stateDrawableMode = DrawableMode.valueOf(typedArray.getInteger(R.styleable.SuperTextView_stv_state_drawable_mode,
                     DEFAULT_STATE_DRAWABLE_MODE));
-            stateDrawable2Mode = DrawableMode.valueOf(typedArray.getInteger(R.styleable.SuperTextView_state_drawable2_mode,
+            stateDrawable2Mode = DrawableMode.valueOf(typedArray.getInteger(R.styleable.SuperTextView_stv_state_drawable2_mode,
                     DEFAULT_STATE_DRAWABLE_MODE));
-            textStroke = typedArray.getBoolean(R.styleable.SuperTextView_text_stroke, false);
-            textStrokeColor = typedArray.getColor(R.styleable.SuperTextView_text_stroke_color,
+            textStroke = typedArray.getBoolean(R.styleable.SuperTextView_stv_text_stroke, false);
+            textStrokeColor = typedArray.getColor(R.styleable.SuperTextView_stv_text_stroke_color,
                     DEFAULT_TEXT_STROKE_COLOR);
-            textFillColor = typedArray.getColor(R.styleable.SuperTextView_text_fill_color,
+            textFillColor = typedArray.getColor(R.styleable.SuperTextView_stv_text_fill_color,
                     DEFAULT_TEXT_FILL_COLOR);
-            textStrokeWidth = typedArray.getDimension(R.styleable.SuperTextView_text_stroke_width,
+            textStrokeWidth = typedArray.getDimension(R.styleable.SuperTextView_stv_text_stroke_width,
                     DEFAULT_TEXT_STROKE_WIDTH);
-            autoAdjust = typedArray.getBoolean(R.styleable.SuperTextView_autoAdjust, false);
+            autoAdjust = typedArray.getBoolean(R.styleable.SuperTextView_stv_autoAdjust, false);
             shaderStartColor =
-                    typedArray.getColor(R.styleable.SuperTextView_shaderStartColor, 0);
+                    typedArray.getColor(R.styleable.SuperTextView_stv_shaderStartColor, 0);
             shaderEndColor =
-                    typedArray.getColor(R.styleable.SuperTextView_shaderEndColor, 0);
-            shaderMode = ShaderMode.valueOf(typedArray.getInteger(R.styleable.SuperTextView_shaderMode, ShaderMode.TOP_TO_BOTTOM.code));
-            shaderEnable = typedArray.getBoolean(R.styleable.SuperTextView_shaderEnable, false);
-            pressBgColor = typedArray.getColor(R.styleable.SuperTextView_pressBgColor, Color.TRANSPARENT);
-            pressTextColor = typedArray.getColor(R.styleable.SuperTextView_pressTextColor, -99);
+                    typedArray.getColor(R.styleable.SuperTextView_stv_shaderEndColor, 0);
+            shaderMode = ShaderMode.valueOf(typedArray.getInteger(R.styleable.SuperTextView_stv_shaderMode, ShaderMode.TOP_TO_BOTTOM.code));
+            shaderEnable = typedArray.getBoolean(R.styleable.SuperTextView_stv_shaderEnable, false);
+
+            textShaderStartColor =
+                    typedArray.getColor(R.styleable.SuperTextView_stv_textShaderStartColor, 0);
+            textShaderEndColor =
+                    typedArray.getColor(R.styleable.SuperTextView_stv_textShaderEndColor, 0);
+            textShaderMode =
+                    ShaderMode.valueOf(typedArray.getInteger(R.styleable.SuperTextView_stv_textShaderMode,
+                            ShaderMode.TOP_TO_BOTTOM.code));
+            textShaderEnable = typedArray.getBoolean(R.styleable.SuperTextView_stv_textShaderEnable, false);
+
+            pressBgColor = typedArray.getColor(R.styleable.SuperTextView_stv_pressBgColor, Color.TRANSPARENT);
+            pressTextColor = typedArray.getColor(R.styleable.SuperTextView_stv_pressTextColor, -99);
             typedArray.recycle();
         }
     }
@@ -269,24 +313,30 @@ public class SuperTextView extends TextView {
     protected void onDraw(Canvas canvas) {
         width = getWidth();
         height = getHeight();
+
+        boolean needScroll = getScrollX() != 0 || getScrollY() != 0;
+        if (needScroll) {
+            canvas.translate(getScrollX(), getScrollY());
+        }
         drawStrokeLine(canvas);
         drawSolid(canvas);
         checkPressColor(canvas);
         isNeedToAdjust(canvas, Adjuster.Opportunity.BEFORE_DRAWABLE);
         drawStateDrawable(canvas);
         isNeedToAdjust(canvas, Adjuster.Opportunity.BEFORE_TEXT);
-        if (textStroke) {
-            getPaint().setStyle(Paint.Style.STROKE);
-            setTextColor(textStrokeColor);
-            getPaint().setFakeBoldText(true);
-            getPaint().setStrokeWidth(textStrokeWidth);
-            super.onDraw(canvas);
-            getPaint().setStyle(Paint.Style.FILL);
-            getPaint().setFakeBoldText(false);
-            setTextColor(textFillColor);
+        if (needScroll) {
+            canvas.translate(-getScrollX(), -getScrollY());
         }
-        super.onDraw(canvas);
+        if (textStroke) {
+            drawTextStroke(canvas);
+        }
+        if (textShaderEnable) {
+            drawShaderText(canvas);
+        } else {
+            sdkOnDraw(canvas);
+        }
         isNeedToAdjust(canvas, Adjuster.Opportunity.AT_LAST);
+        LogUtils.e("canvas.h = " + canvas.getHeight());
     }
 
     private void drawStrokeLine(Canvas canvas) {
@@ -331,7 +381,10 @@ public class SuperTextView extends TextView {
         initPaint();
         paint.setStyle(Paint.Style.FILL);
         if (shaderEnable) {
-            useShader(paint);
+            if (solidShader == null) {
+                solidShader = createShader(shaderStartColor, shaderEndColor, shaderMode, 0, 0, width, height);
+            }
+            paint.setShader(solidShader);
         } else {
             paint.setColor(solid);
         }
@@ -407,43 +460,33 @@ public class SuperTextView extends TextView {
         }
     }
 
-    private void useShader(Paint paint) {
-        if (shader == null) {
-            createShader();
-        }
-        paint.setShader(shader);
-    }
-
-    private boolean createShader() {
-        if (shaderStartColor != 0 && shaderEndColor != 0) {
-            float x0 = 0;
-            float x1 = 0;
-            float y0 = 0;
-            float y1 = 0;
-            int startColor = shaderStartColor;
-            int endColor = shaderEndColor;
+    private LinearGradient createShader(int startColor, int endColor, ShaderMode shaderMode,
+                                        float x0, float y0, float x1, float y1) {
+        if (startColor != 0 && endColor != 0) {
+            int temp = 0;
             switch (shaderMode) {
                 case TOP_TO_BOTTOM:
-                    y1 = height;
+                    x1 = x0;
                     break;
                 case BOTTOM_TO_TOP:
-                    y1 = height;
-                    startColor = shaderEndColor;
-                    endColor = shaderStartColor;
+                    x1 = x0;
+                    temp = startColor;
+                    startColor = endColor;
+                    endColor = temp;
                     break;
                 case LEFT_TO_RIGHT:
-                    x1 = width;
+                    y1 = y0;
                     break;
                 case RIGHT_TO_LEFT:
-                    x1 = width;
-                    startColor = shaderEndColor;
-                    endColor = shaderStartColor;
+                    y1 = y0;
+                    temp = startColor;
+                    startColor = endColor;
+                    endColor = temp;
                     break;
             }
-            shader = new LinearGradient(x0, y0, x1, y1, startColor, endColor, Shader.TileMode.CLAMP);
-            return true;
+            return new LinearGradient(x0, y0, x1, y1, startColor, endColor, Shader.TileMode.CLAMP);
         } else {
-            return false;
+            return null;
         }
     }
 
@@ -455,7 +498,19 @@ public class SuperTextView extends TextView {
                 getDrawableBounds();
                 drawable.setBounds((int) drawableBounds[0], (int) drawableBounds[1],
                         (int) drawableBounds[2], (int) drawableBounds[3]);
-                drawable.draw(canvas);
+                if (drawableTint != NO_COLOR) {
+                    drawable.setColorFilter(drawableTint, PorterDuff.Mode.SRC_IN);
+                }
+                if (drawableRotate != NO_ROTATE) {
+                    canvas.save();
+                    canvas.rotate(drawableRotate,
+                            drawableBounds[0] + (drawableBounds[2] - drawableBounds[0]) / 2,
+                            drawableBounds[1] + (drawableBounds[3] - drawableBounds[1]) / 2);
+                    drawable.draw(canvas);
+                    canvas.restore();
+                } else {
+                    drawable.draw(canvas);
+                }
             }
         }
 
@@ -463,13 +518,29 @@ public class SuperTextView extends TextView {
             getDrawable2Bounds();
             drawable2.setBounds((int) drawable2Bounds[0], (int) drawable2Bounds[1],
                     (int) drawable2Bounds[2], (int) drawable2Bounds[3]);
-            drawable2.draw(canvas);
+            if (drawable2Tint != NO_COLOR) {
+                drawable2.setColorFilter(drawable2Tint, PorterDuff.Mode.SRC_IN);
+            }
+            if (drawable2Rotate != NO_ROTATE) {
+                canvas.save();
+                canvas.rotate(drawable2Rotate,
+                        drawable2Bounds[0] + (drawable2Bounds[2] - drawable2Bounds[0]) / 2,
+                        drawable2Bounds[1] + (drawable2Bounds[3] - drawable2Bounds[1]) / 2);
+                drawable2.draw(canvas);
+                canvas.restore();
+            } else {
+                drawable2.draw(canvas);
+            }
         }
     }
 
     private void drawDrawableBackground(Canvas canvas) {
         if (drawableBackgroundShader == null) {
-            Bitmap bitmap = STVUtils.drawableToBitmap(drawable);
+            if (!(drawable.getIntrinsicHeight() > 0)
+                    || !(drawable.getIntrinsicWidth() > 0)) {
+                drawable.setBounds(0, 0, width, height);
+            }
+            Bitmap bitmap = STVUtils.drawableToBitmap(drawable, width, height);
             bitmap = computeSuitedBitmapSize(bitmap);
             drawableBackgroundShader =
                     new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
@@ -661,6 +732,49 @@ public class SuperTextView extends TextView {
 
     }
 
+
+    private void drawTextStroke(Canvas canvas) {
+        getPaint().setStyle(Paint.Style.STROKE);
+        setTextColor(textStrokeColor);
+        getPaint().setFakeBoldText(true);
+        getPaint().setStrokeWidth(textStrokeWidth);
+        sdkOnDraw(canvas);
+        getPaint().setStyle(Paint.Style.FILL);
+        getPaint().setFakeBoldText(false);
+        setTextColor(textFillColor);
+    }
+
+    private void drawShaderText(Canvas canvas) {
+        Shader tempShader = getPaint().getShader();
+        if (getLayout() != null && getLayout().getLineCount() > 0) {
+            float x0 = getLayout().getLineLeft(0);
+            int y0 = getLayout().getLineTop(0);
+            float x1 = x0 + getLayout().getLineWidth(0);
+            float y1 = y0 + getLayout().getHeight();
+            if (getLayout().getLineCount() > 1) {
+                for (int i = 1; i < getLayout().getLineCount(); i++) {
+                    if (x0 > getLayout().getLineLeft(i)) {
+                        x0 = getLayout().getLineLeft(i);
+                    }
+                    if (x1 < x0 + getLayout().getLineWidth(i)) {
+                        x1 = x0 + getLayout().getLineWidth(i);
+                    }
+                }
+            }
+            if (textShader == null) {
+                textShader = createShader(textShaderStartColor, textShaderEndColor, textShaderMode,
+                        x0, y0, x1, y1);
+            }
+            getPaint().setShader(textShader);
+            sdkOnDraw(canvas);
+        }
+        getPaint().setShader(tempShader);
+    }
+
+    private void sdkOnDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
     /**
      * 获取SuperTextView的圆角大小
      *
@@ -751,20 +865,6 @@ public class SuperTextView extends TextView {
     }
 
     /**
-     * 该方法在后续版本将会被移除，请尽快使用{@link SuperTextView#addAdjuster(Adjuster)}来添加一个Adjuster。
-     *
-     * @param adjuster 添加一个Adjuster。{@link SuperTextView#addAdjuster(Adjuster)}
-     *                 注意最多支持添加3个Adjuster，否则新的Adjuster总是会覆盖最后一个Adjuster。
-     *                 {@link Adjuster}。会触发一次重绘。
-     * @return SuperTextView
-     */
-    @Deprecated
-    public SuperTextView setAdjuster(Adjuster adjuster) {
-
-        return addAdjuster(adjuster);
-    }
-
-    /**
      * 获取最后一个 {@link Adjuster}
      *
      * @return 获得最后一个 {@link Adjuster}，如果存在的话。
@@ -772,6 +872,34 @@ public class SuperTextView extends TextView {
     public Adjuster getAdjuster() {
         if (adjusterList.size() > SYSTEM_ADJUSTER_SIZE) {
             return adjusterList.get(adjusterList.size() - 1);
+        }
+        return null;
+    }
+
+    /**
+     * 获得index对应的 {@link Adjuster}。
+     *
+     * @param index 期望获得的Adjuster的index。
+     * @return index对应的Adjuster，如果参数错误返回null。
+     */
+    public Adjuster getAdjuster(int index) {
+        int realIndex = SYSTEM_ADJUSTER_SIZE + index;
+        if (realIndex > SYSTEM_ADJUSTER_SIZE - 1 && realIndex < adjusterList.size()) {
+            return adjusterList.get(realIndex);
+        }
+        return null;
+    }
+
+    /**
+     * 获得SuperTextView中的所有Adjuster，如果没有返回null
+     *
+     * @return 如果SuperTextView有Adjuster，返回List<Adjuster>；否则返回null
+     */
+    public List<Adjuster> getAdjusterList() {
+        if (adjusterList.size() > SYSTEM_ADJUSTER_SIZE) {
+            ArrayList<Adjuster> r = new ArrayList<>();
+            r.addAll(SYSTEM_ADJUSTER_SIZE, adjusterList);
+            return r;
         }
         return null;
     }
@@ -785,24 +913,13 @@ public class SuperTextView extends TextView {
      */
     public SuperTextView addAdjuster(Adjuster adjuster) {
         if (adjusterList.size() < SYSTEM_ADJUSTER_SIZE + ALLOW_CUSTOM_ADJUSTER_SIZE) {
-            adjusterList.add(adjuster);
+            innerAddAdjuster(adjuster);
         } else {
-            adjusterList.remove(adjusterList.size() - 1);
-            adjusterList.add(adjuster);
+            removeAdjuster(adjusterList.size() - 1);
+            innerAddAdjuster(adjuster);
         }
-        postInvalidate();
         return this;
     }
-
-  public SuperTextView addAdjuster(Adjuster adjuster, int index) {
-        adjusterList.add(index, adjuster);
-
-
-
-
-
-    return this;
-  }
 
     private void addSysAdjuster(Adjuster adjuster) {
         if (adjuster != null) {
@@ -812,50 +929,44 @@ public class SuperTextView extends TextView {
         }
     }
 
+    private void innerAddAdjuster(Adjuster adjuster) {
+        adjusterList.add(adjuster);
+        adjuster.attach(this);
+        postInvalidate();
+    }
+
     /**
-   * 移除指定位置的Adjuster。
-   *
-   * @param index 期望移除的Adjuster的位置。
-   * @return 被移除的Adjuster，如果参数错误返回null。
-   */
+     * 移除指定位置的Adjuster。
+     *
+     * @param index 期望移除的Adjuster的位置。
+     * @return 被移除的Adjuster，如果参数错误返回null。
+     */
     public Adjuster removeAdjuster(int index) {
         int realIndex = SYSTEM_ADJUSTER_SIZE + index;
         if (realIndex > SYSTEM_ADJUSTER_SIZE - 1 && realIndex < adjusterList.size()) {
             Adjuster remove = adjusterList.remove(realIndex);
+            remove.detach(this);
             postInvalidate();
             return remove;
         }
         return null;
     }
 
-  /**
-   * 移除指定的Adjuster，如果包含的话。
-   *
-   * @param adjuster 需要被移除的Adjuster
-   * @return 被移除Adjuster在移除前在Adjuster列表中的位置。如果没有包含，返回-1。
-   */
-  public int removeAdjuster(Adjuster adjuster) {
-    if (adjuster.type != Adjuster.TYPE_SYSTEM && adjusterList.contains(adjuster)) {
-      int index = adjusterList.indexOf(adjuster);
-      adjusterList.remove(adjuster);
-      postInvalidate();
-      return index;
-    }
-    return -1;
-  }
-
     /**
-     * 获得index对应的 {@link Adjuster}。
+     * 移除指定的Adjuster，如果包含的话。
      *
-     * @param index 期望获得的Adjuster的index。
-     * @return index对应的Adjuster，如果参数错误返回null。
+     * @param adjuster 需要被移除的Adjuster
+     * @return 被移除Adjuster在移除前在Adjuster列表中的位置。如果没有包含，返回-1。
      */
-    public Adjuster getAdjuster(int index) {
-        int realIndex = SYSTEM_ADJUSTER_SIZE + index;
-        if (realIndex > SYSTEM_ADJUSTER_SIZE - 1 && realIndex < adjusterList.size()) {
-            return adjusterList.remove(realIndex);
+    public int removeAdjuster(Adjuster adjuster) {
+        if (adjuster.type != Adjuster.TYPE_SYSTEM && adjusterList.contains(adjuster)) {
+            int index = adjusterList.indexOf(adjuster);
+            adjusterList.remove(adjuster);
+            adjuster.detach(this);
+            postInvalidate();
+            return index;
         }
-        return null;
+        return -1;
     }
 
     /**
@@ -1111,7 +1222,7 @@ public class SuperTextView extends TextView {
      * @return SuperTextView
      */
     public SuperTextView setDrawable(int drawableRes) {
-        this.drawable = getResources().getDrawable(drawableRes);
+        this.drawable = getResources().getDrawable(drawableRes).mutate();
         drawableBackgroundShader = null;
         postInvalidate();
 
@@ -1125,7 +1236,7 @@ public class SuperTextView extends TextView {
      * @return SuperTextView
      */
     public SuperTextView setDrawable2(int drawableRes) {
-        this.drawable2 = getResources().getDrawable(drawableRes);
+        this.drawable2 = getResources().getDrawable(drawableRes).mutate();
         postInvalidate();
 
         return this;
@@ -1377,7 +1488,7 @@ public class SuperTextView extends TextView {
      * @return SuperTextView
      */
     public SuperTextView setDrawable2PaddingLeft(float drawablePaddingLeft) {
-        this.drawable2PaddingLeft = drawable2PaddingLeft;
+        this.drawable2PaddingLeft = drawablePaddingLeft;
         postInvalidate();
 
         return this;
@@ -1426,6 +1537,108 @@ public class SuperTextView extends TextView {
     }
 
     /**
+     * 设置第一个状态图的混合颜色。可以修改原本的drawable的颜色。
+     * <p>
+     * 如果需要还原为原来的颜色只需要设置颜色为 {@link SuperTextView#NO_COLOR}.
+     *
+     * @param tintColor 目标混合颜色
+     * @return
+     */
+    public SuperTextView setDrawableTint(int tintColor) {
+        this.drawableTint = tintColor;
+        postInvalidate();
+        return this;
+    }
+
+    /**
+     * 获得第一个状态图的混合颜色。
+     * <p>
+     * 默认为 {@link SuperTextView#NO_COLOR}
+     *
+     * @return
+     */
+    public int getDrawableTint() {
+        return drawableTint;
+    }
+
+
+    /**
+     * 设置第二个状态图的混合颜色。可以修改原本的drawable的颜色。
+     * <p>
+     * 如果需要还原为原来的颜色只需要设置颜色为 {@link SuperTextView#NO_COLOR}.
+     *
+     * @param tintColor 目标混合颜色
+     * @return
+     */
+    public SuperTextView setDrawable2Tint(int tintColor) {
+        this.drawable2Tint = tintColor;
+        postInvalidate();
+        return this;
+    }
+
+    /**
+     * 获得第二个状态图的混合颜色。
+     * <p>
+     * 默认为 {@link SuperTextView#NO_COLOR}
+     *
+     * @return
+     */
+    public int getDrawable2Tint() {
+        return drawable2Tint;
+    }
+
+    /**
+     * 设置第一个状态图的旋转角度。
+     * <p>
+     * 如果需要恢复默认角度只需要设置为 {@link SuperTextView#NO_ROTATE}.
+     *
+     * @param rotate 需要旋转的角度
+     * @return
+     */
+    public SuperTextView setDrawableRotate(float rotate) {
+        this.drawableRotate = rotate;
+        postInvalidate();
+        return this;
+    }
+
+    /**
+     * 获得第一个状态图的旋转角度。
+     * <p>
+     * 默认为 {@link SuperTextView#NO_ROTATE}
+     *
+     * @return
+     */
+    public float getDrawableRotate() {
+        return drawableRotate;
+    }
+
+    /**
+     * 设置第二个状态图的旋转角度。
+     * <p>
+     * 如果需要恢复默认角度只需要设置为 {@link SuperTextView#NO_ROTATE}.
+     *
+     * @param rotate 需要旋转的角度
+     * @return
+     */
+    public SuperTextView setDrawable2Rotate(float rotate) {
+        this.drawable2Rotate = rotate;
+        postInvalidate();
+        return this;
+    }
+
+    /**
+     * 获得第二个状态图的旋转角度。
+     * <p>
+     * 默认为 {@link SuperTextView#NO_ROTATE}
+     *
+     * @return
+     */
+    public float getDrawable2Rotate() {
+        return drawable2Rotate;
+    }
+
+
+    /**
      * 获取渐变色的起始颜色。
      *
      * @return 渐变起始色。
@@ -1442,7 +1655,7 @@ public class SuperTextView extends TextView {
      */
     public SuperTextView setShaderStartColor(int shaderStartColor) {
         this.shaderStartColor = shaderStartColor;
-        shader = null;
+        solidShader = null;
         postInvalidate();
         return this;
     }
@@ -1464,7 +1677,7 @@ public class SuperTextView extends TextView {
      */
     public SuperTextView setShaderEndColor(int shaderEndColor) {
         this.shaderEndColor = shaderEndColor;
-        shader = null;
+        solidShader = null;
         postInvalidate();
         return this;
     }
@@ -1488,7 +1701,7 @@ public class SuperTextView extends TextView {
      */
     public SuperTextView setShaderMode(ShaderMode shaderMode) {
         this.shaderMode = shaderMode;
-        shader = null;
+        solidShader = null;
         postInvalidate();
         return this;
     }
@@ -1513,6 +1726,96 @@ public class SuperTextView extends TextView {
         postInvalidate();
         return this;
     }
+
+    /**
+     * 获取文字渐变色的起始颜色。
+     *
+     * @return 文字渐变起始色。
+     */
+    public int getTextShaderStartColor() {
+        return textShaderStartColor;
+    }
+
+    /**
+     * 设置文字渐变起始色。需要调用{@link SuperTextView#setTextShaderEnable(boolean)}后才能生效。会触发一次重绘。
+     *
+     * @param shaderStartColor 文字渐变起始色
+     * @return SuperTextView
+     */
+    public SuperTextView setTextShaderStartColor(int shaderStartColor) {
+        this.textShaderStartColor = shaderStartColor;
+        textShader = null;
+        postInvalidate();
+        return this;
+    }
+
+    /**
+     * 获取文字渐变色的结束颜色。
+     *
+     * @return 文字渐变结束色。
+     */
+    public int getTextShaderEndColor() {
+        return textShaderEndColor;
+    }
+
+    /**
+     * 设置文字渐变结束色。需要调用{@link SuperTextView#setShaderEnable(boolean)}后才能生效。会触发一次重绘。
+     *
+     * @param shaderEndColor 文字渐变结束色
+     * @return SuperTextView
+     */
+    public SuperTextView setTextShaderEndColor(int shaderEndColor) {
+        this.textShaderEndColor = shaderEndColor;
+        textShader = null;
+        postInvalidate();
+        return this;
+    }
+
+    /**
+     * 获取文字渐变色模式。在{@link ShaderMode}中可以查看所有支持的模式。
+     * 需要调用{@link SuperTextView#setTextShaderEnable(boolean)}后才能生效。
+     *
+     * @return 渐变模式。
+     */
+    public ShaderMode getTextShaderMode() {
+        return textShaderMode;
+    }
+
+    /**
+     * 设置文字渐变模式。在{@link ShaderMode}中可以查看所有支持的模式。
+     * 需要调用{@link SuperTextView#setTextShaderEnable(boolean)}后才能生效。
+     *
+     * @param shaderMode 文字渐变模式
+     * @return SuperTextView
+     */
+    public SuperTextView setTextShaderMode(ShaderMode shaderMode) {
+        this.textShaderMode = shaderMode;
+        textShader = null;
+        postInvalidate();
+        return this;
+    }
+
+    /**
+     * 检查是否启用了文字渐变功能。
+     *
+     * @return 返回true，如果启用了文字渐变功能。
+     */
+    public boolean isTextShaderEnable() {
+        return textShaderEnable;
+    }
+
+    /**
+     * 设置是否启用文字渐变色功能。
+     *
+     * @param shaderEnable true启用文字渐变功能。反之，停用。
+     * @return SuperTextView
+     */
+    public SuperTextView setTextShaderEnable(boolean shaderEnable) {
+        this.textShaderEnable = shaderEnable;
+        postInvalidate();
+        return this;
+    }
+
 
     /**
      * 获得当前按压背景色。没有设置默认为Color.TRANSPARENT。
@@ -1671,8 +1974,6 @@ public class SuperTextView extends TextView {
                         e.printStackTrace();
                         runnable = false;
                     }
-                    // Log.e("SuperTextView", " -> startAnim: " + Thread.currentThread().getId() + "-> "
-                    // + hashCode() + ": It's running!");
                 }
                 animThread = null;
                 if (needRun) {
@@ -1764,9 +2065,13 @@ public class SuperTextView extends TextView {
         private static final int TYPE_SYSTEM = 0x001;
         private static final int TYPE_CUSTOM = 0x002;
 
-
         private Opportunity opportunity = Opportunity.BEFORE_TEXT;
         private int type = TYPE_CUSTOM;
+
+        /**
+         * 当前Adjuster被设置到的SuperTextView
+         */
+        public SuperTextView host;
 
         /**
          * 在Canvas上绘制的东西将能够呈现在SuperTextView上。
@@ -1791,7 +2096,51 @@ public class SuperTextView extends TextView {
             return false;
         }
 
-        ;
+        /**
+         * 当Adjuster被通过 {@link SuperTextView#addAdjuster(Adjuster)} 设置到一个SuperTextView中时，
+         * 会被调用。用于建立Adjuster与宿主SuperTextView之间的关系。
+         *
+         * @param stv 当前被设置到的SuperTextView对象
+         * @return
+         */
+        private void attach(SuperTextView stv) {
+            this.host = stv;
+            onAttach(this.host);
+        }
+
+        /**
+         * 当Adjuster被通过 {@link SuperTextView#addAdjuster(Adjuster)} 设置到一个SuperTextView中时， 会被调用。
+         * <p>
+         * 在这个方法中，开发者可以根据当前所处的SuperTextView环境，进行一些初始化的配置。
+         *
+         * @param stv 当前被设置到的SuperTextView对象
+         */
+        public void onAttach(SuperTextView stv) {
+
+        }
+
+        /**
+         * 当Adjuster被从一个SuperTextView中移除时会被调用，用于解除Adjuster与宿主SuperTextView之间的关系。
+         *
+         * @param stv 当前被从那个SuperTextView中移除
+         * @return
+         */
+        private void detach(SuperTextView stv) {
+            this.host = null;
+            onDetach(stv);
+        }
+
+        /**
+         * 当Adjuster被从一个SuperTextView中移除时会被调用，用于解除Adjuster与宿主SuperTextView之间的关系。
+         * <p>
+         * 需要注意，在这个方法中，成员变量 {@link Adjuster#host} 已经被释放，不要直接使用该成员变量，而是使用 参数 stv。
+         *
+         * @param stv 当前被从那个SuperTextView中移除
+         * @return
+         */
+        public void onDetach(SuperTextView stv) {
+
+        }
 
         /**
          * 获取当前Adjuster的层级。

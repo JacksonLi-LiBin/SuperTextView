@@ -16,57 +16,70 @@
 
 package com.coorchice.supertextview;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.bumptech.glide.util.Util;
 import com.coorchice.library.SuperTextView;
 import com.coorchice.supertextview.SuperTextView.Adjuster.MoveEffectAdjuster;
 import com.coorchice.supertextview.SuperTextView.Adjuster.Ripple2Adjuster;
 import com.coorchice.supertextview.SuperTextView.Adjuster.RippleAdjuster;
 import com.coorchice.supertextview.Utils.LogUtils;
 
-public class SecondActivity extends AppCompatActivity {
+public class SecondActivity extends Activity {
 
-  private SuperTextView btn;
-  private SuperTextView stv_2;
+    private SuperTextView btn;
+    private SuperTextView stv_2;
+    private SuperTextView stv_1;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_second);
-    btn = (SuperTextView) findViewById(R.id.btn);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+        btn = (SuperTextView) findViewById(R.id.btn);
 
 //    btn.setAutoAdjust(true);
-    btn.setAdjuster(new RippleAdjuster(getResources().getColor(R.color.opacity_5_a58fed)));
+        btn.addAdjuster(new RippleAdjuster(getResources().getColor(R.color.opacity_5_a58fed)));
 
-    btn.setOnTouchListener(new View.OnTouchListener() {
-      @Override
-      public boolean onTouch(View v, MotionEvent event) {
-        LogUtils.e("onTouch");
-        return false;
-      }
-    });
+        btn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                LogUtils.e("onTouch");
+                return false;
+            }
+        });
 
-    btn.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        LogUtils.e("onClick");
-      }
-    });
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogUtils.e("onClick");
+            }
+        });
 
-    stv_2 = (SuperTextView) findViewById(R.id.stv_2);
-    stv_2.addAdjuster(new MoveEffectAdjuster().setOpportunity(SuperTextView.Adjuster.Opportunity.BEFORE_TEXT));
-    stv_2.addAdjuster(new Ripple2Adjuster(getResources().getColor(R.color.opacity_9_a58fed)));
-    stv_2.setAutoAdjust(true).startAnim();
+        stv_2 = (SuperTextView) findViewById(R.id.stv_2);
+        stv_2.addAdjuster(new MoveEffectAdjuster().setOpportunity(SuperTextView.Adjuster.Opportunity.BEFORE_TEXT));
+        stv_2.addAdjuster(new Ripple2Adjuster(getResources().getColor(R.color.opacity_9_a58fed)));
+        stv_2.setAutoAdjust(true).startAnim();
 
-    findViewById(R.id.stv_3).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        startActivity(new Intent(SecondActivity.this, ThirdActivity.class));
-      }
-    });
-  }
+        SuperTextView stv_3 = (SuperTextView) findViewById(R.id.stv_3);
+        stv_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SecondActivity.this, ListActivity.class));
+            }
+        });
+        stv_3.setStateDrawable2Mode(SuperTextView.DrawableMode.LEFT);
+        stv_3.setDrawable2PaddingLeft(150);
+
+        stv_1 = (SuperTextView) findViewById(R.id.stv_1);
+        stv_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SecondActivity.this, TestActivity.class));
+            }
+        });
+    }
 }
